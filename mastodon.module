@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains mastodon.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function mastodon_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the mastodon module.
+    case 'help.page.mastodon':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Allows integration with the Mastodon microblogging service.') . '</p>';
+      return $output;
+
+    default:
+  }
+}

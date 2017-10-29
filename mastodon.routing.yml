@@ -1,0 +1,31 @@
+mastodon.mastodon_settings_form:
+  path: '/admin/config/services/mastodon'
+  defaults:
+    _form: '\Drupal\mastodon\Form\MastodonSettingsForm'
+    _title: 'Mastodon Settings'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
+
+mastodon.mastodon_oauth_authorization_url:
+  path: '/admin/mastodon/oauth/authorization-url'
+  defaults:
+    _controller: '\Drupal\mastodon\Controller\MastodonOAuthController::getAuthorizationURL'
+    _title: 'getAuthorizationUrl'
+  methods:  [GET]
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
+
+mastodon.mastodon_oauth_access_token:
+  path: '/admin/mastodon/oauth/access-token'
+  defaults:
+    _controller: '\Drupal\mastodon\Controller\MastodonOAuthController::getAccessToken'
+    _title: 'getAccessToken'
+  methods:  [GET]
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE

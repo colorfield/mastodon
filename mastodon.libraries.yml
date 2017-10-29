@@ -1,0 +1,8 @@
+mastodon.admin:
+  version: VERSION
+  js:
+    js/mastodon.admin.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings

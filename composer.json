@@ -1,0 +1,16 @@
+{
+  "name": "drupal/mastodon",
+  "type": "drupal-module",
+  "description": "Allows integration with the Mastodon microblogging service.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/mastodon",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/mastodon",
+    "source": "http://cgit.drupalcode.org/mastodon"
+  },
+  "require": {
+    "colorfield/mastodon-api": "dev-master"
+  }
+}

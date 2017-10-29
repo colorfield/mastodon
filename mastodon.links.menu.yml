@@ -1,0 +1,6 @@
+mastodon.mastodon_settings_form:
+  title: 'Mastodon'
+  route_name: mastodon.mastodon_settings_form
+  description: 'Configure integration with Mastodon API services.'
+  parent: system.admin_config_services
+  weight: 99

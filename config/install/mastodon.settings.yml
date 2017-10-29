@@ -1,0 +1,6 @@
+mastodon:
+  mastodon_instance: "mastodon.social"
+  application_name: "DrupalMastodon"
+  scopes:
+      - read
+      - write

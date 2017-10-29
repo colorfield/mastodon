@@ -1,0 +1,7 @@
+name: Mastodon
+type: module
+description: Allows integration with the Mastodon microblogging service.
+core: 8.x
+package: Mastodon
+dependencies:
+  - views
