@@ -9,24 +9,10 @@ use Colorfield\Mastodon\MastodonOAuth;
 
 /**
  * Class MastodonOAuthController.
+ *
+ * To be used by the Javascript implementation for progressive enhancement.
  */
 class MastodonOAuthController extends ControllerBase {
-
-  /**
-   * Gets the authorization URL.
-   *
-   * @param string $name
-   *   The application name.
-   * @param string $instance
-   *   The Mastodon instance.
-   *
-   * @return string
-   *   Authorization URL.
-   */
-  private function prepareAuthorizationUrl($name, $instance) {
-    $oAuth = new MastodonOAuth($name, $instance);
-    return $oAuth->getAuthorizationUrl();
-  }
 
   /**
    * Outputs the authorization URL in JSON.
@@ -37,7 +23,10 @@ class MastodonOAuthController extends ControllerBase {
   public function getAuthorizationUrl(Request $request) {
     $name = $request->query->get('application_name');
     $instance = $request->query->get('mastodon_instance');
-    $url = $this->prepareAuthorizationUrl($name, $instance);
+    $oAuth = new MastodonOAuth($name, $instance);
+    $url = $oAuth->getAuthorizationUrl();
+    $response['client_id'] = $oAuth->config->getClientId();
+    $response['client_secret'] = $oAuth->config->getClientSecret();
     $response['authorization_url'] = $url;
     return new JsonResponse($response);
   }

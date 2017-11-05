@@ -1,0 +1,5 @@
+services:
+  mastodon.api:
+    class: Drupal\mastodon\Mastodon
+    arguments: []
+
