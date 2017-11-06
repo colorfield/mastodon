@@ -8,6 +8,8 @@ use Colorfield\Mastodon\UserVO;
 
 /**
  * Class Mastodon.
+ *
+ * @todo type responses
  */
 class Mastodon implements MastodonInterface {
 
@@ -73,7 +75,7 @@ class Mastodon implements MastodonInterface {
   }
 
   /**
-   * Gets followers for a Mastodon user.
+   * Gets an account's followers.
    *
    * @param int $user_id
    *   Mastodon user id.
@@ -81,10 +83,67 @@ class Mastodon implements MastodonInterface {
    *   Optional parameters: max_id, since_id, limit.
    *
    * @return array
-   *   Array of accounts.
+   *   Array of Accounts.
    */
   public function getFollowers($user_id, array $params = []) {
-    return $this->api->get('/accounts/1/followers', $params);
+    return $this->api->get('/accounts/' . $user_id . '/followers', $params);
+  }
+
+  /**
+   * Gets who is following an account.
+   *
+   * @param int $user_id
+   *   Mastodon user id.
+   * @param array $params
+   *   Optional parameters: max_id, since_id, limit.
+   *
+   * @return array
+   *   Array of Accounts.
+   */
+  public function getFollowing($user_id, array $params = []) {
+    return $this->api->get('/accounts/' . $user_id . '/following', $params);
+  }
+
+  /**
+   * Gets an account's statuses.
+   *
+   * @param int $user_id
+   *   Mastodon user id.
+   * @param array $params
+   *   Optional parameters: only_media, exclude_replies, max_id,
+   *   since_id, limit.
+   *
+   * @return array
+   *   Array of Statuses.
+   */
+  public function getStatuses($user_id, array $params = []) {
+    return $this->api->get('/accounts/' . $user_id . '/statuses', $params);
+  }
+
+  /**
+   * Gets an account's relationships.
+   *
+   * @param array $user_ids
+   *   Array of user ids.
+   *
+   * @return array
+   *   Array of Relationships of the current user.
+   */
+  public function getRelationships(array $user_ids) {
+    return $this->api->get('/accounts/relationships', $user_ids);
+  }
+
+  /**
+   * Searches for accounts.
+   *
+   * @param array $params
+   *   Mandatory: q (what to search for), optional: limit.
+   *
+   * @return array
+   *   Array of matching Accounts.
+   */
+  public function search(array $params) {
+    return $this->api->get('/accounts/search', $params);
   }
 
 }

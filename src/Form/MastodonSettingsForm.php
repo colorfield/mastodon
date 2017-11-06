@@ -7,6 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Config\Config;
 use Colorfield\Mastodon\MastodonOAuth;
 use Drupal\Core\Url;
+use Drupal\mastodon\Mastodon;
 
 /**
  * Class MastodonSettingsForm.
@@ -121,10 +122,16 @@ class MastodonSettingsForm extends ConfigFormBase {
    * Testing the API.
    */
   private function testApi() {
-    drupal_set_message('Testing the API. Fetch followers of user 1.');
+    drupal_set_message('Testing the API.');
     $mastodon = \Drupal::service('mastodon.api');
-    $followers = $mastodon->getApi()->get('/accounts/1/followers', ['limit' => 2]);
-    drupal_set_message(print_r($followers, TRUE));
+    if ($mastodon instanceof Mastodon) {
+      $followers = $mastodon->getApi()->get('/accounts/1/followers', ['limit' => 2]);
+      drupal_set_message('Fetch followers of user 1.');
+      drupal_set_message(print_r($followers, TRUE));
+      $search = $mastodon->search(['q' => 'gargon', 'limit' => 10]);
+      drupal_set_message('Search for "gargon" limit to 10 results.');
+      drupal_set_message(print_r($search, TRUE));
+    }
   }
 
   /**
