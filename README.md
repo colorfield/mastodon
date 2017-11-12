@@ -58,23 +58,23 @@ Project status for the Mastodon wrapper, by release.
 
 | Description                          | Endpoint                                       | Needs auth | Release | Status |
 | ------------------------------------ | ---------------------------------------------- |:----------:|:-------:|:------:|
-| Fetching an account                  | GET /api/v1/accounts/:id                       |            |         |        |
-| Getting the current user             | GET /api/v1/accounts/verify_credentials        |            |         |        |
+| Fetching an account                  | GET /api/v1/accounts/:id                       | ✕          | 1.0     | ✓      |
+| Getting the current user             | GET /api/v1/accounts/verify_credentials        | ✓          | 1.0     | ✓      |
 | Updating the current user            | PATCH /api/v1/accounts/update_credentials      |            |         |        |
-| Getting an account's followers       | GET /api/v1/accounts/:id/followers             |            | 1.0     | ✓      |
-| Getting who account is following     | GET /api/v1/accounts/:id/following             |            | 1.0     | ✓      |
-| Getting an account's statuses        | GET /api/v1/accounts/:id/statuses              |            | 1.0     | ✓      |
-| Following/unfollowing an account     | POST /api/v1/accounts/:id/follow - unfollow    |            | 1.0     | ✓      |
+| Getting an account's followers       | GET /api/v1/accounts/:id/followers             | ✕          | 1.0     | ✓      |
+| Getting who account is following     | GET /api/v1/accounts/:id/following             | ✕          | 1.0     | ✓      |
+| Getting an account's statuses        | GET /api/v1/accounts/:id/statuses              | ✕          | 1.0     | ✓      |
+| Following/unfollowing an account     | POST /api/v1/accounts/:id/follow - unfollow    |            |         |        |
 | Blocking/unblocking an account       | POST /api/v1/accounts/:id/block - unblock      |            |         |        |
 | Muting/unmuting an account           | POST /api/v1/accounts/:id/mute - unmute        |            |         |        |
-| Getting an account's relationships   | GET /api/v1/accounts/relationships             |            | 1.0     | ✓      |
-| Searching for accounts               | GET /api/v1/accounts/search                    |            | 1.0     | ✓      |
+| Getting an account's relationships   | GET /api/v1/accounts/relationships             | ✓          | 1.0     | ✓      |
+| Searching for accounts               | GET /api/v1/accounts/search                    | ✕          | 1.0     | ✓      |
 
 ##### Apps
 
 | Description                          | Endpoint                                       | Needs auth | Release | Status |
 | ------------------------------------ | ---------------------------------------------- |:----------:|:-------:|:------:|
-| Registering an application           | POST /api/v1/apps                              |            |         |        |
+| Registering an application           | POST /api/v1/apps                              |            | 1.0     | ✓      |
 
 
 ##### Blocks
@@ -101,7 +101,7 @@ Project status for the Mastodon wrapper, by release.
 
 | Description                              | Endpoint                                              | Needs auth | Release | Status |
 | ---------------------------------------- | ----------------------------------------------------- |:----------:|:-------:|:------:|
-| Fetching a list of follow requests       | GET /api/v1/follow_reques                             |            |         |        |
+| Fetching a list of follow requests       | GET /api/v1/follow_requests                           |            |         |        |
 | Authorizing or rejecting follow requests | POST /api/v1/follow_requests/:id/authorize - reject   |            |         |        |
 
 ##### Follow
@@ -168,6 +168,8 @@ Project status for the Mastodon wrapper, by release.
 
 | Description                          | Endpoint                                           | Needs auth | Release | Status |
 | ------------------------------------ | -------------------------------------------------- |:----------:|:-------:|:------:|
-| Retrieving a timeline                | GET /api/v1/timelines/home - public - tag/:hashtag |            |         |        |
+| Retrieving a timeline                | GET /api/v1/timelines/home                         | ✓          | 1.0     | ✓      |
+| Retrieving a timeline                | GET /api/v1/timelines/public                       | ✕          | 1.0     | ✓      |
+| Retrieving a timeline                | GET /api/v1/timelines/tag/:hashtag                 | ✕          | 1.0     | ✓      |
 
 @todo streaming api https://github.com/tootsuite/documentation/blob/master/Using-the-API/Streaming-API.md

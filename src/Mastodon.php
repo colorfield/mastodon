@@ -118,6 +118,19 @@ class Mastodon implements MastodonInterface {
   }
 
   /**
+   * Fetches an account.
+   *
+   * @param int $user_id
+   *   Mastodon user id.
+   *
+   * @return array
+   *   Account
+   */
+  public function account($user_id) {
+    return $this->api->get('/accounts/' . $user_id);
+  }
+
+  /**
    * Gets an account's followers.
    *
    * @param int $user_id
@@ -187,6 +200,65 @@ class Mastodon implements MastodonInterface {
    */
   public function accountSearch(array $params) {
     return $this->api->get('/accounts/search', $params);
+  }
+
+  /**
+   * Searches for content.
+   *
+   * @param array $params
+   *   Mandatory: q (what to search for),
+   *   optional:resolve (non-local accounts).
+   *
+   * @return array
+   *   Array of matching Results.
+   */
+  public function contentSearch(array $params) {
+    return $this->api->get('/search', $params);
+  }
+
+  /**
+   * Retrieves a home timeline.
+   *
+   * Requires authentication.
+   *
+   * @param array $params
+   *   Optional: local, max_id, since_id, limit (max 40).
+   *
+   * @return array
+   *   Array of Statuses, most recent ones first.
+   */
+  public function timelineHome(array $params = []) {
+    return $this->api->get('/timelines/home', $params);
+  }
+
+  /**
+   * Retrieves a public timeline.
+   *
+   * Does not require authentication.
+   *
+   * @param array $params
+   *   Optional: local, max_id, since_id, limit (max 40).
+   *
+   * @return array
+   *   Array of Statuses, most recent ones first.
+   */
+  public function timelinePublic(array $params = []) {
+    return $this->api->get('/timelines/public', $params);
+  }
+
+  /**
+   * Retrieves a timeline by hashtag.
+   *
+   * Does not require authentication.
+   *
+   * @param array $params
+   *   Optional: local, max_id, since_id, limit (max 40).
+   *
+   * @return array
+   *   Array of Statuses, most recent ones first.
+   */
+  public function timelineTag($tag, array $params = []) {
+    return $this->api->get('/timelines/tag/' . $tag, $params);
   }
 
 }
