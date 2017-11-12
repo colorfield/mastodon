@@ -76,6 +76,48 @@ class Mastodon implements MastodonInterface {
   }
 
   /**
+   * Returns an idea for a user name.
+   *
+   * @param string $account_name
+   *   The user account name, with the @.
+   * @param bool $local
+   *   Limit search to local accounts.
+   *
+   * @return int|array|null[
+   *   The user id, an array of id's or null if not found.
+   */
+  public function accountUserId($account_name, $local = TRUE) {
+    $result = NULL;
+    $params = [
+      'q' => $account_name,
+    ];
+    $searchResults = $this->accountSearch($params);
+    // Exclude the accounts that are not coming from this instance.
+    if ($local) {
+      $searchResultIndex = 0;
+      foreach ($searchResults as $searchResult) {
+        // If the acct contains an @ it is from another instance.
+        if ((strpos($searchResult['acct'], '@') !== FALSE)) {
+          unset($searchResults[$searchResultIndex]);
+        }
+        ++$searchResultIndex;
+      }
+    }
+    // If only one match, return the user id.
+    if (count($searchResults) === 1) {
+      $result = (int) $searchResults[0]['id'];
+      // Otherwise return a key value array (user id, acct)
+    }
+    else {
+      $result = [];
+      foreach ($searchResults as $searchResult) {
+        $result[(int) $searchResult['id']] = $searchResult['acct'];
+      }
+    }
+    return $result;
+  }
+
+  /**
    * Gets an account's followers.
    *
    * @param int $user_id
@@ -86,7 +128,7 @@ class Mastodon implements MastodonInterface {
    * @return array
    *   Array of Accounts.
    */
-  public function getFollowers($user_id, array $params = []) {
+  public function accountFollowers($user_id, array $params = []) {
     return $this->api->get('/accounts/' . $user_id . '/followers', $params);
   }
 
@@ -101,7 +143,7 @@ class Mastodon implements MastodonInterface {
    * @return array
    *   Array of Accounts.
    */
-  public function getFollowing($user_id, array $params = []) {
+  public function accountFollowing($user_id, array $params = []) {
     return $this->api->get('/accounts/' . $user_id . '/following', $params);
   }
 
@@ -117,7 +159,7 @@ class Mastodon implements MastodonInterface {
    * @return array
    *   Array of Statuses.
    */
-  public function getStatuses($user_id, array $params = []) {
+  public function accountStatuses($user_id, array $params = []) {
     return $this->api->get('/accounts/' . $user_id . '/statuses', $params);
   }
 
@@ -130,7 +172,7 @@ class Mastodon implements MastodonInterface {
    * @return array
    *   Array of Relationships of the current user.
    */
-  public function getRelationships(array $user_ids) {
+  public function accountRelationships(array $user_ids) {
     return $this->api->get('/accounts/relationships', $user_ids);
   }
 
@@ -143,7 +185,7 @@ class Mastodon implements MastodonInterface {
    * @return array
    *   Array of matching Accounts.
    */
-  public function search(array $params) {
+  public function accountSearch(array $params) {
     return $this->api->get('/accounts/search', $params);
   }
 

@@ -64,11 +64,11 @@ Project status for the Mastodon wrapper, by release.
 | Getting an account's followers       | GET /api/v1/accounts/:id/followers             |            | 1.0     | ✓      |
 | Getting who account is following     | GET /api/v1/accounts/:id/following             |            | 1.0     | ✓      |
 | Getting an account's statuses        | GET /api/v1/accounts/:id/statuses              |            | 1.0     | ✓      |
-| Following/unfollowing an account     | POST /api/v1/accounts/:id/follow - unfollow    |            |         |        |
+| Following/unfollowing an account     | POST /api/v1/accounts/:id/follow - unfollow    |            | 1.0     | ✓      |
 | Blocking/unblocking an account       | POST /api/v1/accounts/:id/block - unblock      |            |         |        |
 | Muting/unmuting an account           | POST /api/v1/accounts/:id/mute - unmute        |            |         |        |
 | Getting an account's relationships   | GET /api/v1/accounts/relationships             |            | 1.0     | ✓      |
-| Searching for accounts               | GET /api/v1/accounts/search                    |            |         |        |
+| Searching for accounts               | GET /api/v1/accounts/search                    |            | 1.0     | ✓      |
 
 ##### Apps
 
@@ -158,7 +158,7 @@ Project status for the Mastodon wrapper, by release.
 | Getting status context                     | GET /api/v1/statuses/:id/context                       |            |         |        |
 | Getting a card associated with a status    | GET /api/v1/statuses/:id/card                          |            |         |        |
 | Getting who reblogged/favourited a status  | GET /api/v1/statuses/:id/reblogged_by - favourited_by  |            |         |        |
-| Posting a new status                       | POST /api/v1/statuses                                  |            | 1.0     | ✓      |
+| Posting a new status                       | POST /api/v1/statuses                                  |            |         |        |
 | Deleting a status                          | DELETE /api/v1/statuses/:id                            |            |         |        |
 | Reblogging/unreblogging a status           | POST /api/v1/statuses/:id/reblog - unreblog            |            |         |        |
 | Favouriting/unfavouriting a status         | POST /api/v1/statuses/:id/favourite - unfavourite      |            |         |        |

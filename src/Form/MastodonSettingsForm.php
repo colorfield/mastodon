@@ -128,7 +128,7 @@ class MastodonSettingsForm extends ConfigFormBase {
       $followers = $mastodon->getApi()->get('/accounts/1/followers', ['limit' => 2]);
       drupal_set_message('Fetch followers of user 1.');
       drupal_set_message(print_r($followers, TRUE));
-      $search = $mastodon->search(['q' => 'gargon', 'limit' => 10]);
+      $search = $mastodon->accountSearch(['q' => 'gargon', 'limit' => 10]);
       drupal_set_message('Search for "gargon" limit to 10 results.');
       drupal_set_message(print_r($search, TRUE));
     }
