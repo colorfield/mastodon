@@ -10,6 +10,7 @@ use Colorfield\Mastodon\UserVO;
  * Class Mastodon.
  *
  * @todo type responses
+ * @todo set user authentication when needed
  */
 class Mastodon implements MastodonInterface {
 
